@@ -10,3 +10,8 @@ device (vrf-ipv4-unicast)# ip route 0.0.0.0/0 10.24.80.1
 device (vrf-ipv4-unicast)# exit
 device (config-vrf-mgmt-vrf)# exit
 device#(config)# copy running-config startup-config
+
+Te setup the rbridge route
+conf t
+rbridge-id 1
+ip route 0.0.0.0/0 10.24.80.1

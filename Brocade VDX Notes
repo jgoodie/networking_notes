@@ -1,0 +1,15 @@
+Complete the following steps to set a static IP address.
+1. Log in to the device using the default password (the default password is password).
+2. Use the ip address command to set the Ethernet IP address.
+If you are going to use an IPv4 IP address, enter the IP address in dotted decimal notation. You
+should also disable DHCP and enter a gateway address as well.
+                     device(config)# interface Management 1/0
+                     device(config-Management-1/0)# no ip address dhcp
+                     device(config-Management-1/0)# ip address 10.24.85.81/20
+To set up a default gateway, add an IP route in RBridge mode.
+                     device(config-rbridge-id-10)# vrf mgmt-vrf
+                     device (config-vrf-mgmt-vrf)# address-family ipv4 unicast
+                     device (vrf-ipv4-unicast)# ip route 0.0.0.0/0 10.24.80.1
+                     device (vrf-ipv4-unicast)# exit
+                     device (config-vrf-mgmt-vrf)# exit
+                     device#(config)# copy running-config startup-config
